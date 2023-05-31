@@ -10,10 +10,10 @@ class GameOfLife{
         for (let h = 0; h < this.height; h++){
             for (let w = 0; w < this.width; w++){
                 if (Math.floor(Math.random()*4) == 3){
-                    this.init[h][w] = 1;
+                    this.init[h][w] = "*";
                 }
                 else{
-                    this.init[h][w] = 0;
+                    this.init[h][w] = ".";
                 }
 
             }
