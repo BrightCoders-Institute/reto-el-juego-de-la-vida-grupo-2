@@ -30,7 +30,6 @@ class GameOfLife{
     }
 }
 
-
 const test = new GameOfLife(4, 8);
 
 test.generator()
