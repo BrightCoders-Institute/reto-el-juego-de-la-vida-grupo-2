@@ -1,17 +1,17 @@
-export default {
-    "env": {
-        "browser": true,
-        "es2021": true
+module.exports = {
+    env: {
+      browser: true,
+      es2021: true,
     },
-    "extends": "eslint:recommended",
-    "overrides": [
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    extends: 'eslint:recommended',
+    overrides: [],
+    parserOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
-    "rules":  {
-        "semi": ["error", "always"],
-        "quotes": ["error", "double"]
-    }
-};
+    rules: {
+      semi: ['error', 'always'],
+      quotes: ['error', 'double'],
+    },
+  };
+  
