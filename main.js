@@ -70,6 +70,3 @@ test.nextGeneration();
 
 console.log("Segunda generacion:");
 console.table(test.future);
-
-// console.table(test.init);
-// console.log(test.neighbors(2,4))
