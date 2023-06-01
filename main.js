@@ -20,8 +20,7 @@ class GameOfLife{
         }
     }
 
-    neighbors(height, width) {
-        console.log(this.init[2][4])
+    neighbours(height, width) {
         let cellsAround = 0;
         for (let h = -1; h <= 1; h++) {
           for (let w = -1; w <= 1; w++) {
@@ -40,13 +39,42 @@ class GameOfLife{
     }   
 
     nextGeneration(){
-
+        for (let h = 0; h < this.height; h++){
+            for (let w = 0; w < this.width; w++){
+                let cell = this.init[h][w];
+                let neighbours = this.neighbours(this.init[h][w]);
+                let futureCoord = this.future[h][w]
+                if(cell == 1){
+                    if(neighbours <= 2){
+                        this.future[h][w] = 0;
+                    }else if( neighbours > 3 ){
+                        this.future[h][w] = 0;   
+                    }
+                } else {
+                    if(neighbours === 3){
+                        this.future[h][w] = 1;
+                    }
+                }
+            }
+        }
     }
     gameRules(){
+
     }
 }
 
 const test = new GameOfLife(4, 8);
 test.generator();
-console.table(test.init);
-console.log(test.neighbors(2,4))
+
+console.log("Primera generacion:") 
+console.table(test.init)
+
+test.nextGeneration()
+
+console.log("Segunda generacion:") 
+console.table(test.future)
+
+
+
+// console.table(test.init);
+// console.log(test.neighbors(2,4))
