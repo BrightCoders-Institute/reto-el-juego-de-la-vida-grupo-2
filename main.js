@@ -66,7 +66,9 @@ test.generator();
 console.log("Primera generacion:");
 console.table(test.init);
 
+
 test.nextGeneration();
+
 
 console.log("Segunda generacion:");
 console.table(test.future);
