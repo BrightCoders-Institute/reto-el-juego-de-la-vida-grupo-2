@@ -31,4 +31,3 @@ const test = new GameOfLife(4, 8);
 
 test.generator();
 console.table(test.init);
-
