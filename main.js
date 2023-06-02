@@ -8,6 +8,7 @@ class GameOfLife {
     this.future = Array.from({ length: this.height }, () =>
       Array.from({ length: this.width })
     );
+    this.isAlive = true;
   }
 
   generator() {
@@ -43,32 +44,65 @@ class GameOfLife {
     return cellsAround;
   }
 
-  nextGeneration() {    for (let h = 0; h < this.height; h++) {
-    for (let w = 0; w < this.width; w++) {
-      this.gameRules(h, w, this.neighbours(h, w));
+  playGame() {
+    let counter = 0;
+    while (this.isAlive) {
+        console.log(`Generacion ${counter} ^^^`);
+        this.nextGeneration();
+        counter++;
+        if (counter > 10){
+            break;
+        }
     }
+
   }
+
+  // grid = newGrid;
+  // let sum = grid
+  // 	.map((fila) => fila.reduce((acumulador, valor) => acumulador + valor, 0))
+  // 	.reduce((acumulador, valor) => acumulador + valor, 0);
+
+  // if (sum === 0) {
+  // 	console.log("Suma igual a 0")
+  // 	isAlive = false;
+  // }
+  // lastSum = sum;
+
+  nextGeneration() {
+    let sum = this.init
+      .map((fila) => fila.reduce((acumulador, valor) => acumulador + valor, 0))
+      .reduce((acumulador, valor) => acumulador + valor, 0);
+
+    if(sum == 0){
+        this.isAlive = false;
+    }
+    for (let h = 0; h < this.height; h++) {
+      for (let w = 0; w < this.width; w++) {
+        this.gameRules(h, w, this.neighbours(h, w));
+      }
+    }
+    console.table(this.future);
+    this.init = this.future;
+    this.future = Array.from({ length: this.height }, () =>
+      Array.from({ length: this.width })
+    );
   }
   gameRules(height, width, neighbors) {
-    this.future[height][width] = this.init[height][width] === 1 && neighbors < 2
-      ? 0
-      : this.init[height][width] === 1 && neighbors > 3
+    this.future[height][width] =
+      this.init[height][width] === 1 && neighbors < 2
+        ? 0
+        : this.init[height][width] === 1 && neighbors > 3
         ? 0
         : this.init[height][width] === 0 && neighbors === 3
-          ? 1
-          : this.init[height][width];
+        ? 1
+        : this.init[height][width];
   }
 }
 
 const test = new GameOfLife(4, 8);
+
 test.generator();
 
-console.log("Primera generacion:");
 console.table(test.init);
 
-
-test.nextGeneration();
-
-
-console.log("Segunda generacion:");
-console.table(test.future);
+test.playGame();
